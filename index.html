@@ -5,13 +5,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>My Wordle</title>
         <link rel="stylesheet" href="css/style.css">
-        <script src="js/main.js"></script>
+        <script src="js/main.js" type="module"></script>
     </head>
     <body>
         <h1 id="heading">My Wordle</h1>
         <hr>
         <br>
         <div id="board"></div>
-        <h1 id="answer"></h1>
+        <div id="keyboard">
+            <div class="kb-row" id="r-0"></div>
+            <div class="kb-row" id="r-1"></div>
+            <div class="kb-row" id="r-2"></div>
+        </div>
+        <h1 id="message-display"></h1>
     </body>
 </html>

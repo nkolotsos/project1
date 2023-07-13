@@ -7,7 +7,15 @@ const BOARD_WIDTH = 5; // length of the word
 let col = 0;
 let row = 0;
 let gameEnd = false;
-let word = "TULIP";
+
+import {guessList, wordList} from "./wordlist.js";
+// Add wordList to guessList (guessList does not contain wordList)
+
+let combinedList = guessList.concat(wordList);
+
+// Randomised word
+let word = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
+
 
 /*----- event listeners -----*/
 /* Taken from earlier classes. Used to init the board and new word 
@@ -19,9 +27,10 @@ document.addEventListener("keyup", handleKeyPress);
 
 /*----- functions -----*/
 
-// Initialise game board
+// Initialise game board and keyboard
 function init() {
     createBoard();
+    createKeyboard();
 }
 
 function createBoard() {
@@ -37,6 +46,43 @@ function createBoard() {
     }
 }
 
+function createKeyboard() {
+    let keyboard = [
+        ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+        ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+        ["Enter", "Z", "X", "C", "V", "B", "N", "M", "⌫" ]
+    ]
+      
+    const keyboardContainer = document.getElementById("keyboard");
+    
+    // Iterate through array 
+    keyboard.forEach((row, rowIndex) => {
+        const rowContainer = document.getElementById(`r-${rowIndex}`);
+        rowContainer.classList.add("kb-row");
+      
+        row.forEach((key) => {
+          const keyCap = document.createElement("div");
+          keyCap.classList.add("keycap");
+            
+          // Set the ID and text of the keycap based on the value of key(letter)
+          if (key === "Backspace") {
+            keyCap.id = "Backspace";
+            keyCap.textContent = "⌫";
+          } else if (key === "Enter") {
+            keyCap.id = "Enter";
+            keyCap.textContent = "Enter";
+            keyCap.classList.add("enter-keycap");
+          } else {
+            keyCap.id = "Key" + key;
+            keyCap.textContent = key;
+          }
+      
+          rowContainer.appendChild(keyCap);
+        });
+        keyboardContainer.appendChild(rowContainer);
+      });
+}
+
 // function to handle user key input
 function handleKeyPress(event) {
     // Check if game is over (win or run out of attempts)
@@ -45,36 +91,30 @@ function handleKeyPress(event) {
     // Handle each potential key stroke
     if ("KeyA" <= event.code && event.code <= "KeyZ") {
         handleLetterKey(event);
-    } else if (event.code == "Backspace") {
+    } else if (event.code === "Backspace") {
         handleBackspaceKey();
-    } else if (event.code == "Enter") {
+    } else if (event.code === "Enter") {
         handleEnterKey();
     }
 
     // Check if player runs out of attempts
     if (!gameEnd && row === BOARD_HEIGHT) {
         gameEnd = true;
-        document.getElementById("answer").innerText = word;
+        document.getElementById("message-display").innerText = word;
     }
 }
 
-// // Check that key is letter/alphabet
-// function isLetterAlphabet(code) {
-//     return code.match(/[a-zA-Z]/);
-// }
-
 // Handle letter key
 function handleLetterKey(event) {
-    const key = event.code[3];
+    const letter = event.code[3];
     if (col < BOARD_WIDTH) {
         let currentGuess = document.getElementById(`${row.toString()}-${col.toString()}`);
         if (currentGuess.innerText === "") {
-            currentGuess.innerText = key;
+            currentGuess.innerText = letter;
             col++; 
         }
     }
 }
-
 
 // Backspace key
 function handleBackspaceKey() {
@@ -91,7 +131,6 @@ function handleEnterKey() {
     row += 1; // Start new row
     col = 0; // Reset to first square
 }
-
 
 // Check current guess and update the board with correct, included, wrong
 function checkGuess() {
@@ -113,5 +152,22 @@ function checkGuess() {
         if (rightLetters === BOARD_WIDTH) {
             gameEnd = true;
         }
+        
+        // Show correct/included/wrong on keyboard too
+        keycapUpdate(guessedLetter);
+    }
+}
+
+function keycapUpdate(letter) {
+    const keycap = document.getElementById("Key" + letter);
+    
+    if (word.includes(letter)) {
+        if (word[col] === letter) {
+            keycap.classList.add("correct");
+        } else {
+            keycap.classList.add("included");
+        }
+    } else {
+        keycap.classList.add("wrong");
     }
 }

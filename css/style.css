@@ -8,8 +8,6 @@ body {
     text-align: center;
 }
 
-
-
 #heading {
     font-size: 36px;
     font-weight: bold;
@@ -56,4 +54,35 @@ hr {
     background-color: darkgrey;
     color: white;
     border-color: azure;
+}
+
+.kb-row {
+    display: flex;
+    justify-content: center;
+}
+
+.keycap {
+    width: 42px;
+    height: 50px;
+    margin: 1px;
+    border: 1px solid #CCCCFF;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5%;
+}
+
+.enter-keycap {
+    width: 72px;
+    height: 50px;
+    margin: 1px;
+    border: 1px solid #CCCCFF;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5%;
 }
