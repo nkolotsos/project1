@@ -1,24 +1,33 @@
 # Project 1 - My Wordle
--------------------
+--------------------------
 ## Description
-Wordle is a popular word-guessing game where players attempt to guess a hidden word within a limited number of attempts. In this project, I have developed a web-based version of the game called "My Wordle."
 
+Wordle is a popular word-guessing game where players attempt to guess a hidden word within a limited number of attempts. In this project, I have developed a web-based version of the game called "My Wordle".
+--------------------------
+## Screenshots
+![New Game](/imgs/New-Game.png)
+\
+![Mid Game](/imgs/Mid-Game.png)
+\
+![Win Game](/imgs/Win-Game.png)
+\
+![Lost Game](/imgs/Lost-Game.png)
 
+--------------------------
+## Languages
++ HTML
++ CSS
++ JavaScript
+--------------------------
+## Getting Started 
+Click to Play [My Wordle](https://nkolotsos.github.io/project1-mywordle/).
 
-
-
-☐ The code for a working game that meets or exceeds the above technical requirements, built by you, and hosted on GitHub Pages (covered next week).
-
-A README.md file with these sections:
-
-☐ <Your game's title>: A description of your game. Background info of the game is a nice touch.
-
-☐ Screenshot(s): Images of your actual game.
-
-☐ Technologies Used: List of the technologies used, e.g., JavaScript, HTML, CSS...
-
-☐ Getting Started: In this section include the link to your deployed game and any instructions you deem important.
-
-☐ Next Steps: Planned future enhancements (icebox items).
-
-Note: Don't underestimate the value of a well crafted README.md. The README.md introduces your project to prospective employers and forms their first impression of your work!
++ Click the link to play
+--------------------------
+## Next Steps: 
++ Onscreen keyboard display correct letters
++ Touch/click input alongside key input
++ Play again button
++ Tracking player's score
++ A head-to-head versus mode 
+--------------------------

@@ -1,6 +1,7 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
+    background-color: #ececec;
 }
 
 body {
@@ -40,13 +41,13 @@ hr {
 
 .correct {
     background-color: lightgreen;
-    color: white;
+    color: black;
     border-color: azure;
 }
 
 .included {
     background-color: yellow;
-    color: white;
+    color: black;
     border-color: azure;
 }
 

@@ -151,6 +151,7 @@ function checkGuess() {
         // Check if all letters guessed are correct
         if (rightLetters === BOARD_WIDTH) {
             gameEnd = true;
+            document.getElementById("message-display").innerText = "Congratulations!";
         }
         
         // Show correct/included/wrong on keyboard too
@@ -163,8 +164,8 @@ function keycapUpdate(letter) {
     
     if (word.includes(letter)) {
         keycap.classList.add("included")
-    } else if (word[col].toUpperCase() === letter) {
-        keycap.classList.remove("included");
+    } else if (word[col] === letter) {
+        keycap.classList.remove("included")
         keycap.classList.add("correct"); 
     } else {
         keycap.classList.add("wrong");
