@@ -162,12 +162,12 @@ function keycapUpdate(letter) {
     const keycap = document.getElementById("Key" + letter);
     
     if (word.includes(letter)) {
-        if (word[col] === letter) {
-            keycap.classList.add("correct");
-        } else {
-            keycap.classList.add("included");
-        }
+        keycap.classList.add("included")
+    } else if (word[col].toUpperCase() === letter) {
+        keycap.classList.remove("included");
+        keycap.classList.add("correct"); 
     } else {
         keycap.classList.add("wrong");
     }
+
 }
