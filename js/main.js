@@ -43,13 +43,12 @@ function handleKeyPress(event) {
     if (gameEnd === true) return;
     
     // Handle each potential key stroke
-    if (isLetterAlphabet(event.key)) {
+    if ("KeyA" <= event.code && event.code <= "KeyZ") {
         handleLetterKey(event);
-    } else if (event.key === "Backspace") {
+    } else if (event.code == "Backspace") {
         handleBackspaceKey();
-    } else if (event.key === "Enter") {
+    } else if (event.code == "Enter") {
         handleEnterKey();
-        event.preventDefault();
     }
 
     // Check if player runs out of attempts
@@ -59,38 +58,37 @@ function handleKeyPress(event) {
     }
 }
 
-// Check that key is letter/alphabet
-function isLetterAlphabet(key) {
-    return key.match(/[a-zA-Z]/);
-}
+// // Check that key is letter/alphabet
+// function isLetterAlphabet(code) {
+//     return code.match(/[a-zA-Z]/);
+// }
 
 // Handle letter key
 function handleLetterKey(event) {
-    const key = event.key.toUpperCase();
-    if (isLetterAlphabet(key)) {
-        if (col < BOARD_WIDTH) {
-            let currentGuess = document.getElementById(`${row.toString()}-${col.toString()}`);
-            if (currentGuess.innerText === "") {
-                currentGuess.innerText = key;
-                col++; 
-            }
+    const key = event.code[3];
+    if (col < BOARD_WIDTH) {
+        let currentGuess = document.getElementById(`${row.toString()}-${col.toString()}`);
+        if (currentGuess.innerText === "") {
+            currentGuess.innerText = key;
+            col++; 
         }
     }
 }
+
 
 // Backspace key
 function handleBackspaceKey() {
     if (col > 0 && col <= BOARD_WIDTH) {
         col--;
-        let currentGuess = document.getElementById(`${row.toString()}-${col.toString()}`);
-        currentGuess.innerText = "";
     }
+    let currentGuess = document.getElementById(`${row.toString()}-${col.toString()}`);
+    currentGuess.innerText = "";
 }
 
 // Enter key
 function handleEnterKey() {
     checkGuess();
-    row++; // Start new row
+    row += 1; // Start new row
     col = 0; // Reset to first square
 }
 
@@ -99,10 +97,10 @@ function handleEnterKey() {
 function checkGuess() {
     let rightLetters = 0;
     for (let i = 0; i < BOARD_WIDTH; i++) {
-        let currentGuess = document.getElementById(`${row.toString()}-${col.toString()}`);
+        let currentGuess = document.getElementById(`${row.toString()}-${i.toString()}`);
         let guessedLetter = currentGuess.innerText;
 
-        if (word[i] === guessedLetter) {
+        if (word[i] == guessedLetter) {
             currentGuess.classList.add("correct");
             rightLetters++;
         } else if (word.includes(guessedLetter)) {
