@@ -5,6 +5,55 @@
 
 body {
     height: 100vh;
+    text-align: center;
 }
 
 
+
+#heading {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+hr {
+    width: 500px;
+}
+
+#board {
+    display: flex;
+    flex-wrap: wrap;
+    height: 400px;
+    width: 330px;
+    margin: 0 auto;
+}
+
+.square {
+    border: 2px solid lightgrey;
+    width: 60px;
+    height: 60px;
+    margin: 2.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.correct {
+    background-color: lightgreen;
+    color: white;
+    border-color: azure;
+}
+
+.included {
+    background-color: yellow;
+    color: white;
+    border-color: azure;
+}
+
+.wrong {
+    background-color: darkgrey;
+    color: white;
+    border-color: azure;
+}
